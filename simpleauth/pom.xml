@@ -13,9 +13,9 @@
   
   <dependencies>
 	 <dependency>
-        <groupId>jakarta.ws.rs</groupId>
-        <artifactId>jakarta.ws.rs-api</artifactId>
-        <version>3.1.0</version>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>3.1.0</version>
     </dependency>
      <dependency>
       <groupId>org.jboss.logging</groupId>
@@ -64,7 +64,6 @@
       <version>${keycloak.version}</version>
       <scope>provided</scope>
   </dependency>
-    <!-- Added Mockito dependency -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
