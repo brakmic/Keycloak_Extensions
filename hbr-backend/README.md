@@ -1,5 +1,7 @@
 ## Nodejs / Expressjs backend server that communicates with Keycloak
 
+![run_backend](../gifs/run_backend.gif)
+
 ### Installation
 
 Install nodejs and then run `npm install`
