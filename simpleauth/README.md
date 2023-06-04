@@ -1,56 +1,50 @@
-# simpleauth
+# Keycloak Custom Extension for Client Authentication
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This Maven project implements a custom extension for Keycloak, enabling client authentication using a client ID and secret.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Prerequisites
 
-## Running the application in dev mode
+- Java Development Kit (JDK) 11 or higher
+- Apache Maven
+- optionally, an IDE like Eclipse, NetBeans etc.
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+## Installation
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Build the project using Maven: `mvn clean package`
+4. Deploy the built JAR artifact to your Keycloak server by copying it to the `/opt/keycloak/providers` directory.
+5. Run Keycloak with `kc.sh build` to integrate your extension first.
+6. Then run it with `kc.sh start-dev`
 
-## Packaging and running the application
+## Creating the Custom Authentication Flow
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+1. Click on "Authentication" tab.
+2. Select `clients` flow.
+3. In the "Action" menu, select "Duplicate" to create a new flow called "Custom Clients".
+4. Click the button "Add Step" and choose "Simple Client Authenticator" execution from the modal window.
+5. Move "Simple Client Authenticator" to the top of the flow list.
+6. Set the "Simple Client Authenticator" execution to "Alternative".
+7. In the `Action` menu, select "Bind flow".
+8. Select "Client Authentication" from the dropdown menu and click "Save".
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+## Usage
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+With the custom extension deployed and configured, client authentication using a client ID and secret will be enabled for the selected authentication flow in Keycloak.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+When using the custom client authentication, make sure to follow these steps:
 
-## Creating a native executable
+1. Ensure the client that requires authentication is configured in Keycloak with the correct client ID and secret.
+2. In the "Credentials" tab of the client configuration, set the appropriate password.
+3. From your backend application, provide the client ID and secret during the authentication process.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+## Additional Information
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+For more details on Keycloak custom extensions and configuration, refer to the Keycloak documentation.
 
-You can then execute your native executable with: `./target/simpleauth-1.0.0-SNAPSHOT-runner`
+Please note that this custom extension is provided as a sample implementation and may require further customization to suit your specific requirements.
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+## License
 
-## Provided Code
+This project is licensed under the [MIT License](LICENSE).
 
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
