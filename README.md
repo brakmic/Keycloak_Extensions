@@ -2,13 +2,19 @@
 
 This repository contains multiple projects related to Keycloak integration and deployment. Each project serves a specific purpose in the overall system.
 
+![get_token](./gifs/get_token.gif)
+
 ## Project 1: Java Maven Project - Custom Client Authenticator Extension
 
 The first project is a Java Maven project that builds a custom client authenticator extension for Keycloak Quarkus. This extension enables client authentication using a client ID and secret. It provides a customizable solution for integrating client authentication into Keycloak.
 
+![compiling_maven_project](./gifs/compiling_maven_project.gif)
+
 ## Project 2: Express.js Backend - Keycloak Client Integration
 
 The second project is an Express.js backend server that demonstrates the usage of client ID and secret for communication with Keycloak. It showcases how to authenticate clients using Keycloak's authentication flow and obtain access tokens for further authorization.
+
+![testing_custom_client_auth_flow](./gifs/testing_custom_client_auth_flow.gif)
 
 ## Project 3: Containers - Keycloak Docker Deployment
 

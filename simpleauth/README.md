@@ -28,6 +28,8 @@ This Maven project implements a custom extension for Keycloak, enabling client a
 7. In the `Action` menu, select "Bind flow".
 8. Select "Client Authentication" from the dropdown menu and click "Save".
 
+![setup_auth_flow](../gifs/setup_custom_client_auth_flow.gif)
+
 ## Usage
 
 With the custom extension deployed and configured, client authentication using a client ID and secret will be enabled for the selected authentication flow in Keycloak.
