@@ -1,0 +1,32 @@
+<!-- views/protected.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Protected Page</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="protected-page">
+    <div class="container">
+      <div class="content">
+        <h1>Access Token:</h1>
+        <div class="token-container">
+          <textarea readonly class="token-text"><%= token %></textarea>
+        </div>
+        <h2 class="text-xl font-bold text-gray-700 mb-3">Token Information:</h2>
+        <ul class="token-info">
+          <li><strong>Token Type:</strong> <%= tokenType %></li>
+          <li><strong>Expires In:</strong> <%= expiresIn %> seconds</li>
+          <li><strong>Scope:</strong> <%= scope %></li>
+        </ul>
+        <h2 class="text-xl font-bold text-gray-700 mb-3">Decoded Token:</h2>
+        <div class="token-container">
+          <textarea readonly class="token-text">
+<%= JSON.stringify(decodedToken, null, 2) %></textarea
+          >
+        </div>
+        <a href="/" class="btn">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
