@@ -21,7 +21,7 @@ This Docker Compose configuration defines two services: **keycloak** and **postg
 
 The **keycloak** service is built using the default Dockerfile and has several volumes mounted for different directories, including **providers**, **themes**, and **configuration files**. 
 
-It runs the `kc.sh start-dev` command with various migration-related parameters. 
+It runs the `kc.sh start-dev` command that automatically imports  `test-realm.json`.
 
 The Keycloak server is exposed on port 8080, and environment variables are set for database configuration, Quarkus host, Keycloak URL, admin credentials, etc. 
 
