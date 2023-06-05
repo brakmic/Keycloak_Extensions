@@ -45,8 +45,3 @@ When using the custom client authentication, make sure to follow these steps:
 For more details on Keycloak custom extensions and configuration, refer to the Keycloak documentation.
 
 Please note that this custom extension is provided as a sample implementation and may require further customization to suit your specific requirements.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
