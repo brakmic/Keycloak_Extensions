@@ -23,6 +23,11 @@ public class SimpleClientAuthenticator implements ClientAuthenticator {
 
 		if(client != null) {
 			
+			// associate current event with client id
+			// to maintain a detailed history of system events
+			// this is useful for logging etc.
+			context.getEvent().client(client.getClientId());
+
 			// print out info from associated roles
 			client.getRolesStream().forEach(this::logRole);
             
