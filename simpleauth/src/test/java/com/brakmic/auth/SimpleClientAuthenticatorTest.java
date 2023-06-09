@@ -20,7 +20,7 @@ import org.keycloak.models.RealmModel;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class ClientAuthenticatorTest {
+public class SimpleClientAuthenticatorTest {
 
     @Mock
     private ClientAuthenticationFlowContext context;
