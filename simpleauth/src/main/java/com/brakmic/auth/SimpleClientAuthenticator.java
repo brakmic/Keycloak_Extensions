@@ -12,7 +12,7 @@ import org.keycloak.models.RoleModel;
 public class SimpleClientAuthenticator implements ClientAuthenticator {
 
 	private static final Logger logger = Logger.getLogger(SimpleClientAuthenticator.class);
-	private static final String EXPECTED_PROTOCOL = "openid-connect";
+	public static final String EXPECTED_PROTOCOL = "openid-connect";
 
 	@Override
     public void authenticateClient(ClientAuthenticationFlowContext context) {
@@ -33,14 +33,14 @@ public class SimpleClientAuthenticator implements ClientAuthenticator {
             
             // check client availability
             if (!client.isEnabled()) {
-                logger.debug("client login failed due to client being disabled");
+                getLogger().debug("client login failed due to client being disabled");
                 context.failure(null);
                 return;
             }
 
             // check if client protocol is the correct one
             if (!EXPECTED_PROTOCOL.equals(client.getProtocol())) {
-                logger.debug("client login failed due to incorrect protocol");
+                getLogger().debug("client login failed due to incorrect protocol");
                 context.failure(null);
                 return;
             }
@@ -48,26 +48,30 @@ public class SimpleClientAuthenticator implements ClientAuthenticator {
             String clientSecret = client.getSecret();
             // client must provide a secret
             if (clientSecret != null && !clientSecret.isEmpty()) {
-                logger.debug("client id: " + client.getClientId());
-                logger.debug("client secret: " + client.getSecret());
+                getLogger().debug("client id: " + client.getClientId());
+                getLogger().debug("client secret: " + client.getSecret());
                 context.success();
             } else {
-                logger.debug("client login failed due to missing secret");
+                getLogger().debug("client login failed due to missing secret");
                 context.failure(null);
             }
         } else {
-            logger.debug("client login failed due to missing client");
+            getLogger().debug("client login failed due to missing client");
             context.failure(null);
         }
     }
 
     @Override
     public void close() {
-        logger.info("Closing SimpleClientAuthenticator");
+        getLogger().info("Closing SimpleClientAuthenticator");
     }
 
 	private void logRole(RoleModel role) {
-		logger.debug("Role: " + role.getName() + ", Desc: " + role.getDescription());
+		getLogger().debug("Role: " + role.getName() + ", Desc: " + role.getDescription());
+	}
+
+	public static Logger getLogger() {
+		return logger;
 	}
 
 }
