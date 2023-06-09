@@ -44,25 +44,39 @@ cat << EOF > pom.xml
   <properties>
     <maven.compiler.source>20</maven.compiler.source>
     <maven.compiler.target>20</maven.compiler.target>
-    <keycloak.version>21.1.1</keycloak.version>
+    <keycloak.version>21.1.1</keycloak.version> <!-- Adjust this to your Keycloak version -->
   </properties>
   
   <dependencies>
-     <dependency>
+	<dependency>
+       <groupId>ch.qos.logback</groupId>
+       <artifactId>logback-classic</artifactId>
+       <version>1.4.7</version>
+       <scope>provided</scope>
+	</dependency>
+    <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>2.0.7</version>
+       <scope>provided</scope>
+    </dependency>
+	 <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
       <version>3.1.0</version>
+      <scope>provided</scope>
     </dependency>
      <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
       <version>3.5.0.Final</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.9.3</version>
-      <scope>provided</scope>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -104,8 +118,14 @@ cat << EOF > pom.xml
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>4.1.0</version>
-      <scope>provided</scope>
+      <scope>test</scope>
     </dependency>
+  <dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-junit-jupiter</artifactId>
+    <version>5.3.1</version>
+    <scope>test</scope>
+  </dependency>
   </dependencies>
   
   <build>
@@ -118,6 +138,11 @@ cat << EOF > pom.xml
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
       </plugin>
     </plugins>
   </build>
