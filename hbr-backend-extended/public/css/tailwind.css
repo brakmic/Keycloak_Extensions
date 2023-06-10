@@ -1,0 +1,90 @@
+/* tailwind.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Main Page Styles */
+.main-page {
+  @apply bg-gray-200;
+}
+
+.main-page .content {
+  @apply p-8 text-center;
+}
+
+.main-page h1 {
+  @apply text-3xl font-bold text-gray-700 mb-4;
+}
+
+.main-page p {
+  @apply text-gray-700 mb-6;
+}
+
+.main-page .btn {
+  @apply inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+/* Protected Page Styles */
+.protected-page {
+  @apply bg-gray-200;
+}
+
+.protected-page .content {
+  @apply p-8 text-center;
+}
+
+.protected-page h1 {
+  @apply text-3xl font-bold text-gray-700 mb-4;
+}
+
+.protected-page .token-container {
+  @apply mb-6 bg-white rounded p-4;
+}
+
+.protected-page .token-text {
+  @apply w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-blue-500 resize-none;
+  height: 150px;
+}
+
+.protected-page .token-info {
+  @apply text-left mb-4 text-gray-700;
+}
+
+.protected-page .token-info strong {
+  @apply font-bold;
+}
+
+.protected-page .back-link {
+  @apply text-blue-500 underline;
+}
+
+.protected-page .btn {
+  display: inline-block;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.protected-page .btn:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
