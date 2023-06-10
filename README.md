@@ -4,6 +4,8 @@ This repository contains multiple projects related to Keycloak integration and d
 
 ![get_token](./gifs/get_token.gif)
 
+Article [link](https://blog.brakmic.com/keycloak-extensions).
+
 ## Project 1: Java Maven Project - Custom Client Authenticator Extension
 
 The first project is a Java Maven project that builds a custom client authenticator extension for Keycloak Quarkus. This extension enables client authentication using a client ID and secret. It provides a customizable solution for integrating client authentication into Keycloak.
