@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
 # Project name
-project="simpleauth"
+artifactid="simpleauth"
+groupid="org.brakmic.auth"
+class="SimpleAuthenticator"
 
 # Check if the project directory already exists
-if [ -d "$project" ]; then
+if [ -d "$artifactid" ]; then
   # Ask the user if they want to delete the existing project
-  read -p "The project '$project' already exists. Do you want to delete it and create a new one? (y/N) " answer
+  read -p "The project '$artifactid' already exists. Do you want to delete it and create a new one? (y/N) " answer
   case ${answer:0:1} in
     y|Y )
         echo "Deleting the existing project..."
-        rm -rf "$project"
+        rm -rf "$artifactid"
     ;;
     * )
         echo "Aborting the script..."
@@ -21,32 +23,31 @@ fi
 
 # Use mvnw to create the basic structure of the project
 ./mvnw io.quarkus.platform:quarkus-maven-plugin:create \
-    -DprojectGroupId=com.brakmic \
-    -DprojectArtifactId=simpleauth \
-    -DclassName="com.brakmic.auth.SimpleAuthenticator" \
-    -Dpath="/simpleauth"
+    -DprojectGroupId="$groupid" \
+    -DprojectArtifactId="$artifactid" \
+    -DclassName="$groupid.$class" \
+    -Dpath="/$project"
 
 # Navigate into the project directory
-cd simpleauth
+cd "$artifactid"
 
 # Remove the auto-generated pom.xml
 rm pom.xml
 
 # Create pom.xml containing the needed Keycloak libraries
-cat << EOF > pom.xml
+cat << 'EOF' | sed "s|\$groupid|$groupid|g; s|\$artifactid|$artifactid|g" > pom.xml
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.brakmic</groupId>
-  <artifactId>simpleauth</artifactId>
+  <groupId>$groupid</groupId>
+  <artifactId>$artifactid</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
-    <maven.compiler.source>20</maven.compiler.source>
-    <maven.compiler.target>20</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <keycloak.version>21.1.1</keycloak.version> <!-- Adjust this to your Keycloak version -->
   </properties>
-  
   <dependencies>
 	<dependency>
        <groupId>ch.qos.logback</groupId>
@@ -127,7 +128,6 @@ cat << EOF > pom.xml
     <scope>test</scope>
   </dependency>
   </dependencies>
-  
   <build>
     <plugins>
       <plugin>
@@ -148,3 +148,6 @@ cat << EOF > pom.xml
   </build>
 </project>
 EOF
+
+echo "$artifactid setup completed"
+
