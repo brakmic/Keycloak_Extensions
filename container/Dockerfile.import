@@ -45,7 +45,7 @@ FROM alpine AS runtime
 RUN apk add --no-cache bash
 
 # Set up Keycloak realm import
-COPY import/test-realm.json /opt/keycloak/
+COPY import/test-realm.json /opt/keycloak/standalone/configurations/
 
 # Copy Java and Keycloak from builder
 COPY --from=downloader /opt/java /opt/java
@@ -61,4 +61,4 @@ ENV KEYCLOAK_ADMIN_PASSWORD=password
 EXPOSE 8080
 WORKDIR /opt/keycloak
 ENTRYPOINT [ "bash" ]
-CMD ["bash", "-c", "./bin/kc.sh start-dev -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/opt/keycloak/test-realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING"]
+CMD ["./bin/kc.sh", "start-dev", "-Dkeycloak.migration.action=import", "-Dkeycloak.migration.provider=singleFile", "-Dkeycloak.migration.file=/opt/keycloak/standalone/configurations/test-realm.json", "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING"]
