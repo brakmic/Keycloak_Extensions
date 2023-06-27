@@ -31,4 +31,4 @@ ENV KEYCLOAK_ADMIN_PASSWORD=password
 EXPOSE 8080
 WORKDIR /opt/keycloak
 ENTRYPOINT [ "bash" ]
-CMD ["-c", "./bin/kc.sh start-dev"]
+CMD ["./bin/kc.sh", "start-dev"]
