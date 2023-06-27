@@ -35,6 +35,7 @@ FROM alpine AS runtime
 RUN apk add --no-cache bash
 COPY --from=java-downloader /opt/java /opt/java
 COPY --from=builder /keycloak /opt/keycloak
+COPY conf/keycloak.conf /opt/keycloak/conf/
 
 # Runtime environment setup
 ENV JAVA_HOME=/opt/java
