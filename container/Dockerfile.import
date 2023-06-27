@@ -50,6 +50,7 @@ COPY import/test-realm.json /opt/keycloak/import/
 # Copy Java and Keycloak from builder
 COPY --from=downloader /opt/java /opt/java
 COPY --from=builder /opt/keycloak /opt/keycloak
+COPY conf/keycloak.conf /opt/keycloak/conf/
 
 # Runtime environment setup
 ENV JAVA_HOME=/opt/java
